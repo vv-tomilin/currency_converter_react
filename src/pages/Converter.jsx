@@ -64,7 +64,7 @@ function Converter() {
       {firstChange && <p>Введите значение для конвертации пожалуйста...</p>}
 
       <Link to='/rates'>
-        <a className='link-button converter__link'>Смотреть курсы валют</a>
+        <button className='link-button converter__link'>Смотреть курсы валют</button>
       </Link>
       <div className='converter__notice'>
         <h2>Справка:</h2>

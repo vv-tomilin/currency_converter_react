@@ -43,7 +43,7 @@ function ExchangeRates() {
         })
       }</ul>
       <Link to='/'>
-        <a className='link-button converter__link'>Конвертер</a>
+        <button className='link-button converter__link'>Конвертер</button>
       </Link>
     </div>
   )
