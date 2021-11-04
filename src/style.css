@@ -1,0 +1,5 @@
+@import './styles/lib/normalize.css';
+@import './styles/global.css';
+
+@import './styles/converter.css';
+@import './styles/exchange-rates.css';

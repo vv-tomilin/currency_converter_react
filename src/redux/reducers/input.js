@@ -4,7 +4,7 @@ const initialState = {
     quote: 'rub'
 };
 
-function inputValues(state = initialState, action) {
+function input(state = initialState, action) {
     switch (action.type) {
         case 'SET_INPUT_VALUES':
             return {
@@ -18,4 +18,4 @@ function inputValues(state = initialState, action) {
     }
 }
 
-export default inputValues;
+export default input;

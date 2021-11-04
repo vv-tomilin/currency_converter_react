@@ -1,63 +1,102 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setInputValues } from '../redux/actions/input.js';
-import { fetchRate } from '../redux/actions/rate.js';
 
 function Converter() {
-    const validationCurr = ['usd', 'eur', 'rub', 'btc'];
 
-    const dispatch = useDispatch();
-    const {value, base, quote} = useSelector(({input}) => input);
 
-    const [inputValue, setInputValue] = useState('');
-    const [validInput, setValidInput] = useState(false);
-    const [firstChange, setFirstChange] = useState(true);
+  const dispatch = useDispatch();
+  const { value, base, quote } = useSelector(({ input }) => input);
 
-    const handleChange = (event) => {
-        setInputValue(event.target.value.toLowerCase().split(' '));
-    };
+  const [inputValue, setInputValue] = useState('');
+  const [validInput, setValidInput] = useState(false);
+  const [firstChange, setFirstChange] = useState(true);
+  const [multConvert, setMultConvert] = useState(0);
 
-    const enterKeyDown = (event) => {
-        if (event.keyCode === 13) {
+  const { rate, isLoadedRate } = useSelector(({ rate }) => rate);
+  const { currencys } = useSelector(({ currencys }) => currencys);
 
-            setFirstChange(false);
+  const handleChange = (event) => {
+    setInputValue(event.target.value.toLowerCase().split(' '));
+  };
 
-            if (isNumber(inputValue[0])
-                && validationCurr.includes(inputValue[1])
-                && validationCurr.includes(inputValue[3])) {
-                const valuesObj = {
-                    value: inputValue[0],
-                    base: inputValue[1].toLowerCase(),
-                    quote: inputValue[3].toLowerCase()
-                };
+  const enterKeyDown = (event) => {
+    if (event.keyCode === 13) {
 
-                dispatch(setInputValues(valuesObj));
-                setValidInput(true);
-            } else setValidInput(false);
-        }
-    };
+      setFirstChange(false);
 
-    useEffect(() => {
-        dispatch(fetchRate(base, quote));
-    }, [value, base, quote]);
+      //* валидация введенной строки
+      if (inputValue.length === 4 && isNumber(inputValue[0])
+        && currencys.includes(inputValue[1].toLowerCase())
+        && currencys.includes(inputValue[3].toLowerCase())) {
 
-    return (
-        <div>
-            <input onChange={handleChange} onKeyDown={enterKeyDown} />
-            {validInput && <p>valid</p>}
-            {(!validInput && !firstChange) && <p>Input valid value please...</p>}
-            {firstChange && <p>Input value please...</p>}
-        </div>
-    )
+        const valuesObj = {
+          value: inputValue[0],
+          base: inputValue[1].toLowerCase(),
+          quote: inputValue[3].toLowerCase()
+        };
+
+        dispatch(setInputValues(valuesObj));
+        setValidInput(true);
+      } else setValidInput(false);
+
+    }
+  };
+
+  useEffect(() => {
+    if (validInput && isLoadedRate) {
+      setMultConvert(rate * inputValue[0])
+    }
+  }, [rate, value, base, quote]);
+
+  return (
+    <div className='converter'>
+      <h1 className='visually-hidden'>Конвертер</h1>
+      <input
+        placeholder='Введите значение...'
+        className='converter__input'
+        onChange={handleChange}
+        onKeyDown={enterKeyDown} />
+      {validInput && <p className='converter__result'>{value} {base.toUpperCase()} = {multConvert.toFixed(4)} {quote.toUpperCase()}</p>}
+      {(!validInput && !firstChange) && <p>Введенное значение не валидно...</p>}
+      {firstChange && <p>Введите значение для конвертации пожалуйста...</p>}
+
+      <Link to='/rates'>
+        <a className='link-button converter__link'>Смотреть курсы валют</a>
+      </Link>
+      <div className='converter__notice'>
+        <h2>Справка:</h2>
+        <p>
+          Для конвертации введите значение в формате -
+          <span> [сумма валюты]</span> <span>[короткое название валюты]</span> которую хотите конвертировать,
+          <span> [in]</span> <span>[короткое название валюты]</span>,
+          в котроую хотите конвертировать.
+          <p>
+            <span>Например: </span>
+            <span className='converter__notice-example'>15 usd in rub </span>
+            или <span className='converter__notice-example'>24 EUR in usd </span>
+            регистр не имеет значения.
+          </p>
+          <p>Доступные валюты - {currencys && currencys.map((curr) => {
+            return (
+              <span>{curr.toUpperCase()} </span>
+            )
+          })}
+          </p>
+        </p>
+      </div>
+    </div>
+  )
 }
 
 export default Converter;
 
 function isNumber(num) {
-    const isNum = Number(num) + 1;
+  const isNum = Number(num) + 1;
 
-    if (typeof isNum === 'number') {
-        return true;
-    } else return false;
+  if (typeof isNum === 'number') {
+    return true;
+  } else return false;
 }
