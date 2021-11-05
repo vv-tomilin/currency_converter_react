@@ -55,7 +55,7 @@ function Converter() {
     <div className='converter'>
       <h1 className='visually-hidden'>Конвертер</h1>
       <input
-        placeholder='Введите значение...'
+        placeholder='15 usd in rub...'
         className='converter__input'
         onChange={handleChange}
         onKeyDown={enterKeyDown} />

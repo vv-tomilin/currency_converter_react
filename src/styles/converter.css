@@ -17,6 +17,10 @@
   border-radius: 4px;
 }
 
+.converter__input::placeholder {
+  opacity: 0.3;
+}
+
 .converter__result {
   position: absolute;
 
