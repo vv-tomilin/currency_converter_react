@@ -18,6 +18,10 @@ li {
   list-style: none;
 }
 
+h1 {
+  font-size: 40px;
+}
+
 .visually-hidden {
 	position: absolute !important;
 	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
@@ -35,6 +39,8 @@ li {
   width: max-content;
   
   margin-top: 15px;
+  margin-bottom: 45px;
+
   padding: 8px;
 
   background: rgb(52, 194, 230);
@@ -50,4 +56,10 @@ li {
 .link-button:active {
   opacity: 0.4;
   color: white;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 30px;
+  }
 }

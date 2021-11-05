@@ -53,15 +53,19 @@ function Converter() {
 
   return (
     <div className='converter'>
-      <h1 className='visually-hidden'>Конвертер</h1>
+      <h1>Конвертер валют</h1>
       <input
         placeholder='15 usd in rub...'
         className='converter__input'
         onChange={handleChange}
         onKeyDown={enterKeyDown} />
-      {validInput && <p className='converter__result'>{value} {base.toUpperCase()} = {multConvert.toFixed(4)} {quote.toUpperCase()}</p>}
-      {(!validInput && !firstChange) && <p>Введенное значение не валидно...</p>}
-      {firstChange && <p>Введите значение для конвертации пожалуйста...</p>}
+      {validInput &&
+        <p
+          className='converter__result'>
+          {value} {base.toUpperCase()} = {multConvert.toFixed(4)} {quote.toUpperCase()}
+        </p>}
+      {(!validInput && !firstChange) && <p className='converter__result'>Введенное значение не валидно...</p>}
+      {firstChange && <p className='converter__result'>Введите значение для конвертации пожалуйста...</p>}
 
       <Link to='/rates'>
         <button className='link-button converter__link'>Смотреть курсы валют</button>
@@ -72,11 +76,11 @@ function Converter() {
           Для конвертации введите значение в формате -
           <span> [сумма валюты]</span> <span>[короткое название валюты]</span> которую хотите конвертировать,
           <span> [in]</span> <span>[короткое название валюты]</span>,
-          в котроую хотите конвертировать.
+          в котроую хотите конвертировать и нажмите <span>ENTER.</span>
           <p>
             <span>Например: </span>
             <span className='converter__notice-example'>15 usd in rub </span>
-            или <span className='converter__notice-example'>24 EUR in usd </span>
+            или <span className='converter__notice-example'>24 EUR in usd </span><span> + [ENTER] </span>
             регистр не имеет значения.
           </p>
           <p>Доступные валюты - {currencys && currencys.map((curr, i) => {

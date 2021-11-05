@@ -44,24 +44,38 @@ function ExchangeRates() {
 
   const onChangeBaseCurrency = (baseCurr) => {
     dispatch(setChangeBaseCurrency(baseCurr));
+    setToggleBaseCurr(!toggleBaseCurr);
   }
 
   return (
     <div className='exchange-rates'>
-      <h1>Курсы валют по отношению к {baseCurr.toUpperCase()}</h1>
-
-      <button onClick={onToggleBaseCurrList}>{baseCurr}</button>
-      {toggleBaseCurr &&
-        <ul>
-          {
-            currencys && currencys.map((curr, i) => {
-              return (
-                <li key={i} onClick={() => onChangeBaseCurrency(curr)}>{curr}</li>
-              )
-            })
-          }
-        </ul>
-      }
+      <h1 className='exchange-rates__title'>Курсы валют по отношению к <span>{baseCurr.toUpperCase()}</span></h1>
+      <div className='exchange-rates__curr-change-wrapper'>
+        <div className="exchange-rates__label-btn-wrapper">
+          <p>Изменить базовую валюту:</p>
+          <button
+            className='exchange-rates__btn-change-base'
+            onClick={onToggleBaseCurrList}>
+            {baseCurr.toUpperCase()}
+          </button>
+        </div>
+        {toggleBaseCurr &&
+          <ul className='exchange-rates__base-curr-list'>
+            {
+              currencys && currencys.map((curr, i) => {
+                return (
+                  <li
+                    className='exchange-rates__base-curr-item'
+                    key={i}
+                    onClick={() => onChangeBaseCurrency(curr)}>
+                    {curr}
+                  </li>
+                )
+              })
+            }
+          </ul>
+        }
+      </div>
 
       <ul className='exchange-rates__list'>{
         showRates && showRates.map((rate) => {
@@ -74,7 +88,7 @@ function ExchangeRates() {
         })
       }</ul>
       <Link to='/'>
-        <button className='link-button converter__link'>Конвертер</button>
+        <button className='link-button converter__link ex-btn-mob'>Конвертер</button>
       </Link>
     </div>
   )

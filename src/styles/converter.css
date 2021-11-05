@@ -1,5 +1,5 @@
 .converter {
-  margin-top: 25vh;
+  margin-top: 10vh;
 
   display: flex;
   flex-direction: column;
@@ -31,7 +31,6 @@
 .converter__notice {
   width: 85vw;
 
-  margin-top: 45px;
   padding: 15px;
 
   background: rgb(255, 255, 229);
@@ -58,4 +57,32 @@
 
 .converter__link {
   margin-top: 170px;
+}
+
+
+/**============= Под мобилки ==========*/
+@media (max-width: 1024px) {
+
+  .converter {
+    margin-top: 45px;
+  }
+
+  .converter__input {
+    width: 90vw;
+  
+    margin-bottom: 8px;
+  
+    font-size: 25px;
+  
+    border-radius: 4px;
+  }
+
+  .converter__result {
+    position: absolute;
+
+    text-align: center;
+  
+    top: 200px;
+    font-size: 29px;
+  }
 }

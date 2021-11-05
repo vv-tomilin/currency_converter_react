@@ -7,11 +7,86 @@
   align-items: center;
 }
 
+.exchange-rates__title span {
+  color: rgb(231, 102, 26);
+}
+
+.exchange-rates__curr-change-wrapper {
+  position: relative;
+}
+
+.exchange-rates__label-btn-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.exchange-rates__btn-change-base {
+  padding: 3px 10px;
+  margin-left: 15px;
+
+  background: rgb(250, 134, 57);
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.exchange-rates__btn-change-base:hover {
+  background: rgb(255, 110, 13);
+}
+
+.exchange-rates__btn-change-base:active {
+  opacity: 0.5;
+
+  font-weight: bold;
+  color: white;
+}
+
+.exchange-rates__base-curr-list {
+  position: absolute;
+  top: 35px;
+  left: 211px;
+
+  padding: 5px 10px;
+
+  background-color: rgb(255, 246, 118);
+
+  border: 2px solid black;
+  border-radius: 8px;
+}
+
+.exchange-rates__base-curr-item {
+  padding: 4px 10px;
+
+  margin-top: 3px;
+  margin-bottom: 3px;
+
+  cursor: pointer;
+
+  background: rgb(250, 134, 57);
+
+  text-transform: uppercase;
+
+  border-radius: 4px;
+}
+
+.exchange-rates__base-curr-item:hover {
+  font-weight: bold;
+  opacity: 0.8;
+}
+
+.exchange-rates__base-curr-item:active {
+  opacity: 0.5;
+
+  font-weight: bold;
+  color: white;
+}
+
 .exchange-rates__list {
   
   margin-top: 85px;
 
-  width: 80%;
+  width: 50%;
 
   display: flex;
   justify-content: space-between;
@@ -29,6 +104,7 @@
   justify-content: space-between;
 
   background: rgb(112, 218, 85);
+  border: 2px solid black;
   border-radius: 15px;
 
   font-weight: bold;
@@ -37,4 +113,51 @@
 .exchange-rates__item-label {
   color: white;
   font-size: 20px;
+}
+
+/**=========== Под мобилки ============*/
+
+@media (max-width: 1024px) {
+  .exchange-rates {
+    margin-top: 45px;
+  
+    text-align: center;
+  }
+
+  .exchange-rates__label-btn-wrapper {
+    flex-direction: column;
+  }
+
+  .exchange-rates__base-curr-list {
+    top: 60px;
+    left: 66px;
+  }
+
+  .exchange-rates__btn-change-base {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .exchange-rates__list {
+  
+    margin-top: 35px;
+  
+    width: 50%;
+  
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .exchange-rates__list-item {
+    height: 50px;
+    width: 220px;
+
+    padding: 15px 0;
+
+    margin-bottom: 15px;
+  }
+
+  .ex-btn-mob {
+    margin-top: 45px;
+  }
 }
