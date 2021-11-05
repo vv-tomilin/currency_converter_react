@@ -10,6 +10,11 @@ export const setLoadedExchangeRates = (bool) => ({
   payload: bool
 });
 
+export const setChangeBaseCurrency = (curr) => ({
+  type: 'SET_CHANGE_BASE_CURRENCY',
+  payload: curr
+});
+
 export const fetchExchangeRates = (baseCurr) => (dispatch) => {
 
   axios.get(`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${baseCurr}.json`)

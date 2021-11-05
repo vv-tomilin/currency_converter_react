@@ -68,7 +68,7 @@ function Converter() {
       </Link>
       <div className='converter__notice'>
         <h2>Справка:</h2>
-        <p>
+        <div>
           Для конвертации введите значение в формате -
           <span> [сумма валюты]</span> <span>[короткое название валюты]</span> которую хотите конвертировать,
           <span> [in]</span> <span>[короткое название валюты]</span>,
@@ -79,13 +79,13 @@ function Converter() {
             или <span className='converter__notice-example'>24 EUR in usd </span>
             регистр не имеет значения.
           </p>
-          <p>Доступные валюты - {currencys && currencys.map((curr) => {
+          <p>Доступные валюты - {currencys && currencys.map((curr, i) => {
             return (
-              <span>{curr.toUpperCase()} </span>
+              <span key={i}>{curr.toUpperCase()} </span>
             )
           })}
           </p>
-        </p>
+        </div>
       </div>
     </div>
   )
